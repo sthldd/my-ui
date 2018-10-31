@@ -1,0 +1,23 @@
+{
+  "name": "my-ui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sthldd/my-ui.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sthldd/my-ui/issues"
+  },
+  "homepage": "https://github.com/sthldd/my-ui#readme",
+  "dependencies": {
+    "vue": "^2.5.17"
+  }
+}
