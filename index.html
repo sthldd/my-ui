@@ -14,25 +14,25 @@
   :root{
     --button-height:32px;
     --font-size:14px;
+    --button-bg: white;
+    --button-active-bg: #eee;
+    --border-radius: 4px;
+    --color: #333;
+    --border-color: #999;
+    --border-color-hover: #666;
   }
-  </style>
-  <style>
-   .m-button{
+  #app {
+    margin: 20px;
+  }
+  body{
     font-size: var( --font-size);
-    height: var( --button-height);
-   }
+  }
   </style>
 </head>
 <body>
   <div id="app">
     <m-button></m-button>
   </div>
-<script src="./node_modules/vue/dist/vue.min.js"></script>
-<script src="./button.js"></script>
-<script>
- new Vue({
-   el:'#app',
- })
-</script>
+<script src="./src/app.js"></script>
 </body>
 </html>
