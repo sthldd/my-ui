@@ -1,3 +1,11 @@
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 .m-button {
   padding: 0 1em;
   display: inline-flex;
@@ -34,7 +42,28 @@
   order: 2;
   margin-right: 0;
   margin-left: 0.1em;
+}
+.m-button .loading {
+  animation: spin 2s infinite linear;
 }.icon{
       width: 1em;
       height: 1em;
-    }
+    }.m-button-group {
+  display: inline-flex;
+  vertical-align: middle;
+}
+.m-button-group > .m-button {
+  border-radius: 0;
+  margin-left: -1px;
+}
+.m-button-group > .m-button:first-child {
+  border-top-left-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
+}
+.m-button-group > .m-button:last-child {
+  border-top-right-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+}
+.m-button-group > .m-button:hover {
+  border-color: red;
+}

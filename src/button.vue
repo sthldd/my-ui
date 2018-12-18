@@ -1,9 +1,7 @@
 <template>
- <button class="m-button" :class="{[`icon-${iconPosition}`]:true}">
-    <!-- <svg v-if="icon" class="icon">
-      <use :xlink:href="`#i-${icon}`"></use>
-    </svg> -->
-    <m-icon v-if="icon" :name="icon"></m-icon>
+ <button class="m-button" :class="{[`icon-${iconPosition}`]:true}" @click="$emit('click')">
+    <m-icon v-if="icon && !loading" :name="icon" class="icon"></m-icon>
+    <m-icon name="loading" v-if="loading" class="loading icon"></m-icon>
     <div class="content">
       <slot></slot>
     </div>
@@ -13,6 +11,10 @@
 export default {
   props:{
     icon:{},
+    loading:{
+      type:Boolean,
+      default:false
+    },
     iconPosition:{
       type:String,
       default:'left',
@@ -25,6 +27,10 @@ export default {
 }
 </script>
 <style lang="scss">
+  @keyframes spin {
+    0%{transform: rotate(0deg)};
+    100%{transform: rotate(360deg)};
+  }
   .m-button{
     padding: 0 1em;
     display: inline-flex;
@@ -45,6 +51,9 @@ export default {
     &.icon-right{
       .content{order:1;}
       .icon{order:2;margin-right:0;margin-left:.1em;}
+    }
+    .loading{
+      animation: spin 2s infinite linear;
     }
 
    }
