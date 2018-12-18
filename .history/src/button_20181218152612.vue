@@ -21,7 +21,8 @@ export default {
 
       }
     }
-  }
+  },
+  cr
 }
 </script>
 <style lang="scss">

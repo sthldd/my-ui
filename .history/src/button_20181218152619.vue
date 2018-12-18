@@ -21,6 +21,9 @@ export default {
 
       }
     }
+  },
+  created(){
+    console.log(this.icon)
   }
 }
 </script>

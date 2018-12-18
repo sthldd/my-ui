@@ -3,7 +3,7 @@ import Button from "./button";
 import Icon from "./icon";
 
 Vue.component('m-button',Button)
-Vue.component('m-icon', Icon)
+Vue.component('m-button', Button)
 new Vue({
   el: '#app',
 })
