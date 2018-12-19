@@ -1,8 +1,8 @@
 {
-  "name": "my-ui",
-  "version": "1.0.0",
+  "name": "mlx-ui",
+  "version": "1.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "start": "parcel index.html --no-cache",
     "dev-test": "parcel watch test/* --no-cache & karma start",
