@@ -8,7 +8,11 @@
  </button>
 </template>
 <script>
+import Icon from "./icon";
 export default {
+  components:{
+    'm-icon':Icon
+  },
   props:{
     icon:{},
     loading:{
