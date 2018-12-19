@@ -5,7 +5,14 @@
 </template>
 <script>
 export default {
-
+  mounted(){
+    for(let node of this.$el.children){
+      let name = node.nodeName.toLowerCase()
+      if(name !== 'button'){
+        console.warn(`g-button=group的孩子应该是g-button,但是你写的是${name}`);
+      }
+    }
+  }
 }
 </script>
 <style lang="scss">
@@ -14,7 +21,9 @@ export default {
     vertical-align: middle;
     >.m-button{
       border-radius: 0;
-      margin-left: -1px;
+      &:not(:first-child){
+        margin-left: -1px;
+      }
       &:first-child{
         border-top-left-radius: var(--border-radius);
         border-bottom-left-radius: var(--border-radius);
@@ -24,9 +33,8 @@ export default {
         border-bottom-right-radius: var(--border-radius);
       }
       &:hover{
-        // position: relative;
-        // z-index: 1;
-         border-color:red;
+        position: relative;
+        z-index: 1;
       }
     }
   }

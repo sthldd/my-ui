@@ -35,10 +35,13 @@
     <m-button :loading="loading1" @click="loading1 = !loading1">傻逼</m-button>
     <m-button icon="setting" icon-position="right" :loading="true">傻逼</m-button>
     <m-button-group>
-      <m-button icon="left">上一页</m-button>
+      <div>
+        <m-button icon="left">上一页</m-button>
+      </div>
       <m-button>更多</m-button>
       <m-button icon="right" icon-position="right">下一页</m-button>
     </m-button-group>
+    <div id="test"></div>
   </div>
 <script src="./src/app.js"></script>
 <script src="//at.alicdn.com/t/font_740215_p9mqcu7c7id.js"></script>
