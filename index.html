@@ -21,9 +21,6 @@
     --border-color: #999;
     --border-color-hover: #666;
   }
-  #app {
-    margin: 20px;
-  }
   body{
     font-size: var( --font-size);
   }
@@ -31,35 +28,38 @@
 </head>
 <body>
   <style>
-    .demo{
-      background: #ddd;
-      border:1px solid #666;
+    .sider{
+      background: #ccc;
+      width: 200px;
+    }
+    .header{
+background: #ddd;
       height:100px;
+    }
+    .content{
+      background:white ;
+    }
+    .footer{
+      background: black;
+      height:50px;
     }
   </style>
   <div id="app">
-    <m-row>
+    <m-layout style="height:100vh;">
+      <m-sider>滑动</m-sider>
+      <m-layout>
+        <m-header>头</m-header>
+        <m-content>身体</m-content>
+        <m-footer>脚</m-footer>
+      </m-layout>
+
+    </m-layout>
+    <!-- <m-row>
       <m-col span="24" :ipad="{span:11,offset:1}" :narrow-pc="{span:8}" >
         <div class="demo"></div>
       </m-col>
-      <m-col span="24" :ipad="{span:12}" :narrow-pc="{span:8}" >
-        <div class="demo"></div>
-      </m-col>
-      <m-col span="24" :ipad="{span:12}" :narrow-pc="{span:8}" >
-        <div class="demo"></div>
-      </m-col>
-      <m-col span="24" :ipad="{span:12}" :narrow-pc="{span:8}" >
-        <div class="demo"></div>
-      </m-col>
-      <m-col span="24" :ipad="{span:12}" :narrow-pc="{span:8}" >
-        <div class="demo"></div>
-      </m-col>
-      <m-col span="24" :ipad="{span:12}" :narrow-pc="{span:8}" >
-        <div class="demo"></div>
-      </m-col>
     </m-row>
-
-    <!-- <m-button icon="setting" :loading="true">傻逼</m-button>
+     <m-button icon="setting" :loading="true">傻逼</m-button>
     <m-button :loading="loading1" @click="loading1 = !loading1">傻逼</m-button>
     <m-button icon="setting" icon-position="right" :loading="true">傻逼</m-button>
     <m-button-group>
@@ -72,7 +72,8 @@
     <!-- <m-input value="张三" disabled></m-input>
     <m-input value="张三" readonly></m-input>
     <m-input value="张三"></m-input>
-    <m-input value="张三" error="你就是个大傻逼"></m-input> -->
+    <m-input value="张三" error="你就是个大傻逼"></m-input>
+  -->
   </div>
 <script src="./src/app.js"></script>
 </body>
