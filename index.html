@@ -27,33 +27,8 @@
   </style>
 </head>
 <body>
-  <style>
-    .sider{
-      background: #ccc;
-      width: 200px;
-    }
-    .header{
-background: #ddd;
-      height:100px;
-    }
-    .content{
-      background:white ;
-    }
-    .footer{
-      background: black;
-      height:50px;
-    }
-  </style>
   <div id="app">
-    <m-layout style="height:100vh;">
-      <m-sider>滑动</m-sider>
-      <m-layout>
-        <m-header>头</m-header>
-        <m-content>身体</m-content>
-        <m-footer>脚</m-footer>
-      </m-layout>
-
-    </m-layout>
+    <button @click="showToast">点击</button>
     <!-- <m-row>
       <m-col span="24" :ipad="{span:11,offset:1}" :narrow-pc="{span:8}" >
         <div class="demo"></div>
