@@ -1,6 +1,13 @@
 <template>
-  <div class="toast">
-    <slot></slot>
+  <div class="toast" ref="toast">
+    <div class="message">
+      <slot v-if="!enableHtml"></slot>
+      <div v-else v-html="$slots.default[0]"></div> <!-- 去掉slot 用div 因为slot不接受v-html -->
+    </div>
+    <div class="line" ref="line"></div>
+    <span class="close" v-if="closeButton" @click="clickClose">
+      {{closeButton.text}}
+    </span>
   </div>
 </template>
 <script>
@@ -9,6 +16,56 @@ export default {
   data(){
     return{
 
+    }
+  },
+  props:{
+    autoClose:{
+      type:Boolean,
+      default:true
+    },
+    autoCloseDealy:{
+      type:Number,
+      default:50
+    },
+    closeButton:{
+      type:Object,
+      default(){
+        return{
+          text:"关闭",callback:undefined
+        }
+      }
+    },
+    enableHtml:{
+      type:Boolean,
+      default:false
+    }
+  },
+  mounted(){
+    this.concantClose()
+    this.updataStyle()
+  },
+  methods:{
+    concantClose(){
+      if(this.autoClose){
+        setTimeout(() => {
+          this.close()
+        }, this.autoCloseDealy * 1000);
+      }
+    },
+    updataStyle(){
+      this.$nextTick(()=>{
+        this.$refs.line.style.height  = this.$refs.toast.clientHeight + 'px'
+      })
+    },
+    close(){
+      this.$el.remove()
+      this.$destroy()
+    },
+    clickClose(){
+      this.close()
+      if( this.closeButton && typeof  this.closeButton.callback === 'function'){
+        this.closeButton.callback()
+      }
     }
   }
 }
@@ -26,7 +83,7 @@ export default {
     transform: translateX(-50%);
     font-size: $font-size;
     line-height: $line-height;
-    height:$height;
+    min-height:$height;
     display: flex;
     align-items: center;
     background: $background;
@@ -34,6 +91,19 @@ export default {
     border-radius: 4px;
     padding:0 16px;
     color:white;
+    .close{
+      padding: 0 16px;
+      flex-shrink: 0;
+    }
+    .line{
+      height:100%;
+      border-left: 1px solid #666;
+      margin-left: 16px;
+    }
+    .message{
+      padding: 8px 0;
+    }
   }
+
 </style>
 
