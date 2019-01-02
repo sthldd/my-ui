@@ -33,13 +33,31 @@ new Vue({
     loading1:false
   },
   created(){
-    this.$toast('啊啊啊啊啊啊', {
-      enableHtml:false
-    })
+
   },
   methods:{
-    showToast() {
-
+    showToast1() {
+      this.showToast('top')
+    },
+    showToast2() {
+      this.showToast('bottom')
+    },
+    showToast3() {
+      this.showToast('middle')
+    },
+    showToast(position) {
+      this.$toast('啊啊啊啊啊啊', {
+        position,
+        enableHtml: false,
+        closeButton:{
+          text:"已充值",
+          callback(){
+            console.log('已经ok')
+          }
+        },
+        autoClose:false,
+        autoCloseDealy:3
+      })
     }
   }
 })
