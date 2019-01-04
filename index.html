@@ -28,9 +28,36 @@
 </head>
 <body>
   <div id="app">
-    <button @click="showToast1">TOP</button>
-    <button @click="showToast2">BOTTOM</button>
-    <button @click="showToast3">MIDDLE</button>
+    <m-tabs :selected.sync="selectedTab">
+      <m-tabs-head>
+        <template slot="actions">
+          <button>按钮</button>
+        </template>
+        <m-tabs-item name="money" name="loading">
+          财经
+        </m-tabs-item>
+        <m-tabs-item name="man">
+          男人
+        </m-tabs-item>
+        <m-tabs-item name="sex" disabled>
+          色情
+        </m-tabs-item>
+      </m-tabs-head>
+      <m-tabs-body>
+        <m-tabs-pane name="money">
+          财经信息
+        </m-tabs-pane>
+        <m-tabs-pane name="man">
+          男人信息
+        </m-tabs-pane>
+        <m-tabs-pane name="sex">
+          色情信息
+        </m-tabs-pane>
+      </m-tabs-body>
+    </m-tabs>
+
+
+
     <!-- <m-row>
       <m-col span="24" :ipad="{span:11,offset:1}" :narrow-pc="{span:8}" >
         <div class="demo"></div>

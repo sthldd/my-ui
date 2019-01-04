@@ -12,6 +12,11 @@ import Layout from "./layout";
 import Sider from "./sider";
 import Toast from "./toast";
 import plugin from "./plugin";
+import Tabs from './tabs';
+import TabsHead from './tabs-head';
+import TabsBody from './tabs-body';
+import TabsItem from './tabs-item';
+import TabsPane from './tabs-pane';
 
 Vue.component('m-button',Button)
 Vue.component('m-icon', Icon)
@@ -26,11 +31,16 @@ Vue.component('m-layout', Layout)
 Vue.component('m-sider', Sider)
 Vue.component('m-toast', Toast)
 Vue.use(plugin)
+Vue.component('m-tabs', Tabs);
+Vue.component('m-tabs-head', TabsHead);
+Vue.component('m-tabs-body', TabsBody);
+Vue.component('m-tabs-item', TabsItem);
+Vue.component('m-tabs-pane', TabsPane);
 
 new Vue({
   el: '#app',
   data:{
-    loading1:false
+    selectedTab: "man"
   },
   created(){
 
