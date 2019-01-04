@@ -1,5 +1,5 @@
 <template>
-  <div class="tabs-item" @click="clickItem">
+  <div class="tabs-item" @click="clickItem" :class="classess">
     <slot></slot>
   </div>
 </template>
@@ -7,6 +7,11 @@
 export default {
   name:'MTabsItems',
   inject:['eventBus'],
+  data(){
+    return{
+      active:false
+    }
+  },
   props:{
     disabled:{
       type:Boolean,
@@ -17,20 +22,46 @@ export default {
       required:true
     }
   },
+  computed:{
+    classess(){
+      return {
+        active:this.active,
+        disabled:this.disabled
+      }
+    }
+  },
   created(){
     this.eventBus.$on('update:selected',(name)=>{
-      console.log(name)
+      if(name === this.name){
+        this.active = true
+      }else{
+        this.active = false
+      }
     })
   },
   methods:{
     clickItem(){
-      this.eventBus.$emit('update:selected',this.name)
+      if(this.disabled){return}
+      this.eventBus.$emit('update:selected',this.name,this)
     }
   }
 }
 </script>
 <style lang="scss" scoped>
   .tabs-item{
-
+    flex-shrink: 0;
+    padding: 0 3em;
+    cursor: pointer;
+    display: flex;
+    height:100%;
+    align-items: center;
+    &.active{
+      color:#1890ff;
+      font-weight: 500;
+    }
+    &.disabled{
+      pointer-events: none;
+      color:gray;
+    }
   }
 </style>

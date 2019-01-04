@@ -30,7 +30,16 @@ export default {
       eventBus:this.eventBus
     }
   },
-  created(){
+  mounted(){
+    this.$children.forEach((vm)=>{
+      if(vm.$options.name == 'MTabsHead'){
+        vm.$children.forEach((item)=>{
+          if(item.$options.name == 'MTabsItems' && item.name == this.selected){
+             this.eventBus.$emit('update:selected',this.selected,item)
+          }
+        })
+      }
+    })
 
   }
 }
