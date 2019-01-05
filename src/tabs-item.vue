@@ -1,5 +1,5 @@
 <template>
-  <div class="tabs-item" @click="clickItem" :class="classess">
+  <div class="tabs-item" @click="clickItem" :class="classess" :data-name="name">
     <slot></slot>
   </div>
 </template>
@@ -31,7 +31,7 @@ export default {
     }
   },
   created(){
-    this.eventBus.$on('update:selected',(name)=>{
+    this.eventBus && this.eventBus.$on('update:selected',(name)=>{
       if(name === this.name){
         this.active = true
       }else{
@@ -60,8 +60,8 @@ export default {
       font-weight: 500;
     }
     &.disabled{
-      pointer-events: none;
       color:gray;
+      cursor: not-allowed;
     }
   }
 </style>

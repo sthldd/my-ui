@@ -26,7 +26,7 @@ export default {
     }
   },
   created(){
-    this.eventBus.$on('update:selected',(name)=>{
+    this.eventBus && this.eventBus.$on('update:selected',(name)=>{
       if(name === this.name){
         this.active = true
       }else{
@@ -38,6 +38,6 @@ export default {
 </script>
 <style lang="scss" scoped>
   .tabs-pane{
-    
+
   }
 </style>
