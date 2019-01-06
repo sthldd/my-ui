@@ -27,59 +27,13 @@
   </style>
 </head>
 <body>
-  <div id="app">
-    <!-- <m-tabs :selected.sync="selectedTab">
-      <m-tabs-head>
-        <template slot="actions">
-          <button>按钮</button>
-        </template>
-        <m-tabs-item name="money">
-          <m-icon name="loading"></m-icon>财经
-        </m-tabs-item>
-        <m-tabs-item name="man">
-          男人
-        </m-tabs-item>
-        <m-tabs-item name="sex" disabled>
-          色情
-        </m-tabs-item>
-      </m-tabs-head>
-      <m-tabs-body>
-        <m-tabs-pane name="money">
-          财经信息
-        </m-tabs-pane>
-        <m-tabs-pane name="man">
-          男人信息
-        </m-tabs-pane>
-        <m-tabs-pane name="sex">
-          色情信息
-        </m-tabs-pane>
-      </m-tabs-body>
-    </m-tabs> -->
-    <m-tabs>
-      <div>1</div>
-    </m-tabs>
-
-
-    <!-- <m-row>
-      <m-col span="24" :ipad="{span:11,offset:1}" :narrow-pc="{span:8}" >
-        <div class="demo"></div>
-      </m-col>
-    </m-row>
-     <m-button icon="setting" :loading="true">傻逼</m-button>
-    <m-button :loading="loading1" @click="loading1 = !loading1">傻逼</m-button>
-    <m-button icon="setting" icon-position="right" :loading="true">傻逼</m-button>
-    <m-button-group>
-      <div>
-        <m-button icon="left">上一页</m-button>
-      </div>
-      <m-button>更多</m-button>
-      <m-button icon="right" icon-position="right">下一页</m-button>
-    </m-button-group> -->
-    <!-- <m-input value="张三" disabled></m-input>
-    <m-input value="张三" readonly></m-input>
-    <m-input value="张三"></m-input>
-    <m-input value="张三" error="你就是个大傻逼"></m-input>
-  -->
+  <div id="app" style="padding-left:100px;padding-top:100px;">
+    <m-popover>
+      <template slot="content">
+        <div>popover的内容</div>
+      </template>
+      <button>点我</button>
+    </m-popover>
   </div>
 <script src="./src/app.js"></script>
 </body>
