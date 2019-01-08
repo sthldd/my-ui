@@ -1,5 +1,5 @@
 <template>
-  <div class="popover" @click="toggleContent">
+  <div class="popover" @click.top="toggleContent">
     <div class="content-wrapper"  v-if="visible" ref="contentWrapper">
       <slot name="content"></slot>
     </div>
@@ -17,21 +17,33 @@ export default {
     }
   },
   methods:{
-    toggleContent(){
-      this.visible = !this.visible
-      if(this.visible == true){
-        this.$nextTick(()=>{
-          document.body.appendChild(this.$refs.contentWrapper)
-          console.log(this.$refs.triggerWrapper)
-          let {width,height,top,left} = this.$refs.triggerWrapper.getBoundingClientRect()
-          this.$refs.contentWrapper.style.top = top + window.scrollY +  'px'
-          this.$refs.contentWrapper.style.left = left + window.scrollX + 'px'
-          let clickHandler = ()=>{
-            this.visible = false
-            document.removeEventListener('click',clickHandler)
-          }
-          document.addEventListener('click',clickHandler)
-        })
+    positionContent(){
+      document.body.appendChild(this.$refs.contentWrapper)
+      let {width,height,top,left} = this.$refs.triggerWrapper.getBoundingClientRect()
+      this.$refs.contentWrapper.style.top = top + window.scrollY +  'px'
+      this.$refs.contentWrapper.style.left = left + window.scrollX + 'px'
+    },
+    listenDocument(){
+      let clickHandler = (e)=>{
+        if(!this.$refs.contentWrapper.contains(e.target)){
+          this.visible = false
+          document.removeEventListener('click',clickHandler)
+        }
+      }
+      document.addEventListener('click',clickHandler)
+    },
+    onShow(){
+      this.positionContent()
+      this.listenDocument()
+    },
+    toggleContent(e){
+      if(this.$refs.triggerWrapper.contains(e.target)){
+        this.visible = !this.visible
+        if(this.visible == true){
+          this.$nextTick(()=>{
+            this.onShow()
+          })
+        }
       }
     }
   },
