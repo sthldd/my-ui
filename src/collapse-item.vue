@@ -19,17 +19,39 @@ export default {
   props:{
     title:{
       type:String,
-      require:true
+      required:true
+    },
+    name:{
+      type:String,
+      required:true
     }
   },
+  inject:['eventBus'],
+  // mounted(){
+  //   this.eventBus && this.eventBus.$on('update:selected',(name)=>{
+  //     if(name !== this.name){
+  //       this.close()
+  //     }else{
+  //       this.show()
+  //     }
+  //   })
+  // },
   methods:{
     openContent(){
-      this.open = !this.open
+      if(this.open){
+        this.open =false
+      }else{
+        this.eventBus && this.eventBus.$emit('update:selected',this.name)
+      }
+    },
+    close(){
+      this.open =false
+    },
+    show(){
+      this.open = true
     }
   },
-  created(){
-    console.log(this.title)
-  }
+
 }
 </script>
 
