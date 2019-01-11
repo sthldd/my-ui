@@ -1,7 +1,7 @@
 <template>
   <div class="collapseItem">
-    <div class="title" @click="openContent">
-      {{title}}
+    <div class="title" @click="toogle">
+      {{single}}{{title}}
     </div>
     <div class="content" v-if="open">
       <slot></slot>
@@ -13,7 +13,8 @@ export default {
   name:'MCollapseItem',
   data(){
     return{
-      open:false
+      open:false,
+      single:false
     }
   },
   props:{
@@ -27,30 +28,32 @@ export default {
     }
   },
   inject:['eventBus'],
-  // mounted(){
-  //   this.eventBus && this.eventBus.$on('update:selected',(name)=>{
-  //     if(name !== this.name){
-  //       this.close()
-  //     }else{
-  //       this.show()
-  //     }
-  //   })
-  // },
+  mounted(){
+    this.eventBus && this.eventBus.$on('update:selected',(names)=>{
+      if(names.includes(this.name)){
+        this.show()
+      }else{
+        if(this.single){
+          this.close()
+        }
+      }
+    })
+  },
   methods:{
-    openContent(){
+    toogle(){
       if(this.open){
-        this.open =false
+        this.open = false
       }else{
         this.eventBus && this.eventBus.$emit('update:selected',this.name)
       }
     },
     close(){
-      this.open =false
+      this.open = false
     },
     show(){
       this.open = true
     }
-  },
+  }
 
 }
 </script>

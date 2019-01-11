@@ -1,4 +1,4 @@
-<template>
+ <template>
   <div class="collapse">
     <slot></slot>
   </div>
@@ -18,7 +18,7 @@ export default {
       default:false
     },
     selected:{
-      type:String,
+      type:Array,
     }
   },
   provide(){
@@ -26,11 +26,15 @@ export default {
         eventBus:this.eventBus
       }
   },
-  methods:{
-
-  },
   mounted(){
-    this.eventBus.$on('update:selected',this.selected)
+    this.eventBus.$emit('update:selected',this.selected)
+    this.eventBus.$on('update:selected',(name)=>{
+      this.selected.push(name)
+      this.$emit('update:selected',this.selected)
+    })
+    this.$children.forEach((vm)=>{
+      vm.single = this.single
+    })
   }
 }
 </script>
