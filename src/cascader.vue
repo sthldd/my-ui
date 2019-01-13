@@ -3,7 +3,10 @@
     <div class="trigger" @click="popoverVisible = !popoverVisible">
     </div>
     <div class="popover" v-if="popoverVisible">
-      <cascader-item :items="source" :height="popoverHeight"> </cascader-item>
+      <cascader-item
+      :items="source" :height="popoverHeight" :selected="selected"
+      @update:selected="onUpdateChange"
+      > </cascader-item>
     </div>
   </div>
 </template>
@@ -24,6 +27,15 @@
       },
       popoverHeight:{
         type: String
+      },
+      selected:{
+        type:Array,
+        default:()=>{return []}
+      }
+    },
+    methods:{
+      onUpdateChange(newSelected){
+        this.$emit('update:selected',newSelected)
       }
     }
   }
