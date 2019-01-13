@@ -1,6 +1,5 @@
 <template>
   <div style="padding-top:20px;padding-left:100px;">
-    {{selected}}
     <m-cascader :source="source" popover-height="200px" :selected="selected"
       @update:selected=" selected = $event"></m-cascader>
   </div>
