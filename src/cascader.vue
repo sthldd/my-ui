@@ -32,11 +32,56 @@
       selected:{
         type:Array,
         default:()=>{return []}
+      },
+      loadData:{
+        type:Function
       }
     },
     methods:{
       onUpdateChange(newSelected){
-        this.$emit('update:selected',newSelected)
+        this.$emit('update:selected',newSelected) //告诉父亲 更新了
+        let lastItem = newSelected[newSelected.length  - 1] //点击的当前项
+        let simplest = (children,id)=>{ //看看有无children
+          return children.filter(item =>
+                  item.id === id)[0]
+        }
+        let complex =  (children,id)=>{
+          let noChildren = []
+          let hasChildren = []
+          children.forEach(item=>{ //遍历当前项有无children
+            if(item.children){
+              hasChildren.push(item)
+            }else{
+              noChildren.push(item)
+            }
+          })
+          let found = simplest(noChildren,id) //看item有没有children
+
+          if(found){ //如果没有children就返回
+            return found
+          }else{ //有children就用复杂的complex来找
+            found = simplest(hasChildren,id)
+            if(found){
+              return found
+            }else{
+              for(var i = 0;i<hasChildren.length;i++){
+                found = complex(hasChildren[i].children,id)
+                if(found){
+                  return found
+                }
+              }
+              return undefined
+            }
+          }
+        }
+
+        let upDateSource = (result)=>{
+          let copy = JSON.parse(JSON.stringify(this.source))
+          let toUpdate = complex(copy,lastItem.id) //copy是所有的数据
+          toUpdate.children=result
+          this.$emit('update:source',copy)
+        }
+        this.loadData(lastItem,upDateSource)
       }
     },
     computed:{

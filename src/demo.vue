@@ -1,12 +1,23 @@
 <template>
   <div style="padding-top:20px;padding-left:100px;">
-    <m-cascader :source="source" popover-height="200px" :selected="selected"
-      @update:selected=" selected = $event"></m-cascader>
+    <m-cascader :source.sync="source" popover-height="200px"
+    :selected.sync="selected" :load-data="loadData"></m-cascader>
   </div>
 </template>
 <script>
 import Cascader from './cascader';
 import Button from "./button";
+import db from "./db";
+
+function ajax(parentId = 0){
+  return new Promise((resolve,reject)=>{
+    setTimeout(()=>{
+      let id = db.filter((item)=>item.parent_id == parentId)
+      resolve(id)
+    },0)
+  })
+}
+
 export default {
   name:'demo',
   components:{
@@ -16,55 +27,22 @@ export default {
   data(){
     return{
       selected:[],
-      source: [
-        {
-        name: '浙江',
-        children: [
-          {
-            name: '杭州',
-            children: [
-              { name: '上城' },
-              { name: '下城' },
-              { name: '江干' },
-            ]
-          },
-          {
-            name: '嘉兴',
-            children: [
-              { name: '南湖' },
-              { name: '秀洲' },
-              { name: '嘉善' },
-            ]
-          },
-        ]
-        }, {
-          name: '福建',
-          children: [
-            {
-              name: '福州',
-              children: [
-                { name: '鼓楼' },
-                { name: '台江' },
-                { name: '仓山' },
-              ]
-            },
-          ]
-        }, {
-          name: '安徽',
-          children: [
-            {
-              name: '合肥',
-              children: [
-                { name: '滨湖' },
-                { name: '蜀山' },
-                { name: '高新' },
-              ]
-            },
-          ]
-        }
-      ]
+      source:[]
     }
   },
+  created() {
+    ajax(0).then((data)=>{
+      this.source = data
+    })
+  },
+  methods:{
+    loadData(item,upDateSource){
+      let {id} = item
+      ajax(id).then((result)=>{
+        upDateSource(result)
+      })
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>
