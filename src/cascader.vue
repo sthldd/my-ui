@@ -1,6 +1,6 @@
 <template>
-  <div class="cascader">
-    <div class="trigger" @click="popoverVisible = !popoverVisible">
+  <div class="cascader" ref="cascader">
+    <div class="trigger" @click="toggle">
       {{result || '&nbsp;'}}
     </div>
     <div class="popover" v-if="popoverVisible">
@@ -39,6 +39,29 @@
       }
     },
     methods:{
+      onClickDocument(e){
+        let {cascader} = this.$refs
+        let {target} = e  //点击的是cascader或者是它内部 我就不管 其他的调用close
+        if(cascader === target || cascader.contains(target)){return}
+        this.close()
+      },
+      close(){
+        this.popoverVisible = false
+        document.removeEventListener('click',this.onClickDocument)
+      },
+      open(){
+        this.popoverVisible = true
+        this.$nextTick(()=>{ //防止第一次就触发
+          document.addEventListener('click',this.onClickDocument)
+        })
+      },
+      toggle(){
+        if(this.popoverVisible === true){
+          this.close()
+        }else{
+          this.open()
+        }
+      },
       onUpdateChange(newSelected){
         this.$emit('update:selected',newSelected) //告诉父亲 更新了
         let lastItem = newSelected[newSelected.length  - 1] //点击的当前项
@@ -101,6 +124,8 @@
 @import "var";
   .cascader{
     position: relative;
+    border:1px solid red;
+    display: inline-block;
     .trigger{
       border:1px solid #D9D9D9;
       height:$input-height;
