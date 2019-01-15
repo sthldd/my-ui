@@ -2,12 +2,15 @@
   <div style="padding-top:20px;padding-left:100px;">
     <m-cascader :source.sync="source" popover-height="200px"
     :selected.sync="selected" :load-data="loadData"></m-cascader>
+    <m-cascader :source.sync="source" popover-height="200px"
+                :selected.sync="selected" :load-data="loadData"></m-cascader>
   </div>
 </template>
 <script>
 import Cascader from './cascader';
 import Button from "./button";
 import db from "./db";
+import {removeEventListener} from './click-outside'
 //db里面的parent_id 0 是第一级别省 省的id对应的是市的parent_id
 function ajax(parentId = 0){
   return new Promise((resolve,reject)=>{
@@ -41,6 +44,9 @@ export default {
     ajax(0).then((data)=>{
       this.source = data
     })
+  },
+  destroyed(){
+    removeEventListener()
   },
   methods:{
     loadData(item,upDateSource){

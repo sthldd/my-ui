@@ -1,5 +1,5 @@
 <template>
-  <div class="cascader" ref="cascader">
+  <div class="cascader" ref="cascader" v-click-outside="close">
     <div class="trigger" @click="toggle">
       {{result || '&nbsp;'}}
     </div>
@@ -15,9 +15,12 @@
 
 <script>
   import CascaderItem from './cascader-item'
+  import ClickOutside from  './click-outside'
+
   export default {
     name: 'MCascader',
     components: {CascaderItem},
+    directives: {ClickOutside},
     data(){
       return{
         popoverVisible:false,
@@ -39,21 +42,11 @@
       }
     },
     methods:{
-      onClickDocument(e){
-        let {cascader} = this.$refs
-        let {target} = e  //点击的是cascader或者是它内部 我就不管 其他的调用close
-        if(cascader === target || cascader.contains(target)){return}
-        this.close()
-      },
       close(){
         this.popoverVisible = false
-        document.removeEventListener('click',this.onClickDocument)
       },
       open(){
         this.popoverVisible = true
-        this.$nextTick(()=>{ //防止第一次就触发
-          document.addEventListener('click',this.onClickDocument)
-        })
       },
       toggle(){
         if(this.popoverVisible === true){
