@@ -8,11 +8,18 @@
 import Cascader from './cascader';
 import Button from "./button";
 import db from "./db";
-
+//db里面的parent_id 0 是第一级别省 省的id对应的是市的parent_id
 function ajax(parentId = 0){
   return new Promise((resolve,reject)=>{
     setTimeout(()=>{
-      let id = db.filter((item)=>item.parent_id == parentId)
+      let id = db.filter((item)=>item.parent_id == parentId) //过滤出来所有的省
+      id.forEach(node=>{ //查看是不是叶子节点 叶子节点就是没有子元素 添加isLeaf
+        if(db.filter((item)=>item.parent_id == node.id).length > 0){
+          node.isLeaf = false    //看市的parent_id是否等于省的id filter返回数组 看有无children
+        }else{
+          node.isLeaf = true
+        }
+      })
       resolve(id)
     },0)
   })

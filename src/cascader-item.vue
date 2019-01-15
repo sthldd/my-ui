@@ -2,8 +2,8 @@
   <div class="cascaderItem" :style="{height:height}">
     <div class="left">
       <div v-for="item in items" class="label" @click="onClickLabel(item)">
-        {{item.name}}
-      <icon class="icon" v-if="item.children" name="right"></icon>
+        <span class="name">{{item.name}}</span>
+      <icon class="icon" v-if="rightArrowVisible(item)" name="right"></icon>
       </div>
     </div>
     <div class="right">
@@ -35,17 +35,23 @@
       level:{
         type:Number,
         default:0
+      },
+      loadData:{
+        type:Function
       }
     },
-    computed:{
-      rightItems(){
-        let currentSelected = this.selected[this.level]
-        if(currentSelected  && currentSelected.children){
-          return currentSelected.children
-        }else{
-          return null
+    computed:{  //点击两次才出现 因为computed计算的selected和level没有变 所以要从items更新
+      rightItems(){ //点击的对象和数据做对比
+        if(this.selected[this.level]){
+          let selected = this.items.filter((item)=>{
+            return item.name === this.selected[this.level].name
+          })
+          if(selected && selected[0].children && selected[0].children.length > 0){
+            return selected[0].children
+          }
         }
-      }
+      },
+
     },
     methods:{
       onClickLabel(item){
@@ -56,6 +62,9 @@
       },
       onUpdateSelected(newSelected){
         this.$emit('update:selected',newSelected)
+      },
+      rightArrowVisible(item){
+        return this.loadData ? !item.isLeaf :item.children
       }
     }
   }
@@ -67,6 +76,7 @@
     align-items: flex-start;
     justify-content: flex-start;
     height:100px;
+    overflow: hidden;
     .left{
       height:100%;
       padding:.3em 0;
@@ -77,11 +87,19 @@
       border-left: 1px solid #E8E8E8;
     }
     .label{
-      padding:.3em 1em;
+      padding:.5em 1em;
       display: flex;
       align-items: center;
+      cursor: pointer;
+      &:hover{
+        background: #eee;
+      }
+      >.name{
+        margin-right: 1em;
+        user-select: none;
+      }
       .icon{
-        margin-left: 1em;
+        margin-left: auto;
         transform: scale(0.8);
       }
     }

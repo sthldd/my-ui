@@ -7,6 +7,7 @@
       <cascader-item
       :items="source" :height="popoverHeight" :selected="selected"
       @update:selected="onUpdateChange"
+      :loadData="loadData"
       > </cascader-item>
     </div>
   </div>
@@ -81,7 +82,9 @@
           toUpdate.children=result
           this.$emit('update:source',copy)
         }
-        this.loadData(lastItem,upDateSource)
+        if(!lastItem.isLeaf){
+          this.loadData && this.loadData(lastItem,upDateSource) //不是叶子才加载数据
+        }
       }
     },
     computed:{
