@@ -2,8 +2,6 @@
   <div style="padding-top:20px;padding-left:100px;">
     <m-cascader :source.sync="source" popover-height="200px"
     :selected.sync="selected" :load-data="loadData"></m-cascader>
-    <m-cascader :source.sync="source" popover-height="200px"
-                :selected.sync="selected" :load-data="loadData"></m-cascader>
   </div>
 </template>
 <script>
@@ -24,7 +22,7 @@ function ajax(parentId = 0){
         }
       })
       resolve(id)
-    },0)
+    },3000)
   })
 }
 

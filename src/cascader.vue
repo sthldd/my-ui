@@ -7,7 +7,7 @@
       <cascader-item
       :items="source" :height="popoverHeight" :selected="selected"
       @update:selected="onUpdateChange"
-      :loadData="loadData"
+      :loadData="loadData" :loading-item = "loadingItem"
       > </cascader-item>
     </div>
   </div>
@@ -24,6 +24,7 @@
     data(){
       return{
         popoverVisible:false,
+        loadingItem:{},
       }
     },
     props: {
@@ -93,13 +94,15 @@
         }
 
         let upDateSource = (result)=>{
+          this.loadingItem = {}
           let copy = JSON.parse(JSON.stringify(this.source))
           let toUpdate = complex(copy,lastItem.id) //copy是所有的数据
           toUpdate.children=result
           this.$emit('update:source',copy)
         }
-        if(!lastItem.isLeaf){
-          this.loadData && this.loadData(lastItem,upDateSource) //不是叶子才加载数据
+        if(!lastItem.isLeaf && this.loadData){
+          this.loadData(lastItem,upDateSource) //不是叶子才加载数据
+          this.loadingItem = lastItem
         }
       }
     },
