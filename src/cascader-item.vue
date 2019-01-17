@@ -16,8 +16,8 @@
     <div class="right">
       <div v-if="rightItems">
         <m-cascader-item :items="rightItems" :height="height" :level="level+1"
-        :selected="selected" @update:selected="onUpdateSelected" :loading-item = "loadingItem"
-                         :load-data="loadData"
+        :selected="selected" @update:selected="onUpdateSelected"
+        :loading-item = "loadingItem" :load-data="loadData"
         > </m-cascader-item>
       </div>
     </div>
