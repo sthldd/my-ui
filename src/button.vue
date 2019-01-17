@@ -2,7 +2,7 @@
  <button class="m-button" :class="{[`icon-${iconPosition}`]:true}" @click="$emit('click')">
     <m-icon v-if="icon && !loading" :name="icon" class="icon"></m-icon>
     <m-icon name="loading" v-if="loading" class="loading icon"></m-icon>
-    <div class="content">
+    <div class="Content">
       <slot></slot>
     </div>
  </button>
@@ -30,27 +30,27 @@ export default {
   }
 }
 </script>
-<style lang="scss">
-@import "var";
+<style lang="scss" scoped>
+   @import "var";
   .m-button{
     padding: 0 1em;
     display: inline-flex;
     justify-content: center;
     align-items: center;
     vertical-align: top;
-    font-size: var( --font-size);
-    height: var( --button-height);
+    font-size: $font-size;
+    height: $input-height;
     padding: 0 1em;
-    border-radius: var(--border-radius);
-    border: 1px solid var(--border-color);
-    background: var(--button-bg);
-    &:hover {border-color: var(--border-color-hover);}
-    &:active {border-color: var(--button-active-bg);}
+    border-radius: $border-radius;
+    border: 1px solid $border-color;
+    background: $button-bg;
+    &:hover {border-color: $border-color-hover;}
+    &:active {border-color: $button-active-bg;}
     &:focus {outline: none;}
-    >.content{order: 2;}
+    >.Content{order: 2;}
     >.icon{order:1;margin-right:.1em;}
     &.icon-right{
-      .content{order:1;}
+      .Content{order:1;}
       .icon{order:2;margin-right:0;margin-left:.1em;}
     }
     .loading{

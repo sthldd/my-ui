@@ -1,7 +1,8 @@
 <template>
   <div style="padding-top:20px;padding-left:100px;">
-    <m-cascader :source.sync="source" popover-height="200px"
-    :selected.sync="selected" :load-data="loadData"></m-cascader>
+    <!--<m-cascader :source.sync="source" popover-height="200px"-->
+    <!--:selected.sync="selected" :load-data="loadData"></m-cascader>-->
+    <m-button icon="setting">按钮</m-button>
   </div>
 </template>
 <script>
@@ -63,10 +64,10 @@ export default {
     box-sizing: border-box;
   }
   html{
-    --font-size:14px;
+    font-size:14px;
   }
   body{
-    font-size: var( --font-size);
+    font-size: 14px;
   }
 </style>
 

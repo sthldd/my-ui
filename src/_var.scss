@@ -1,6 +1,14 @@
 $input-height:32px;
 $border-color:#D9D9D9;
-$border-radius:4px;
+$border-color-hover: #666;
+$border-radius: 4px;
+$box-shadow-color: rgba(0, 0, 0, 0.5);
+$button-active-bg: #eee;
+$button-bg: white;
+$button-height: 32px;
+$color: #333;
+$font-size: 14px;
+$red: #F1453D;
 .box-shadow{
   box-shadow: 0 0 5px rgba(0,0,0,0.15);
 }
