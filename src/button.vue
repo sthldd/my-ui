@@ -24,7 +24,6 @@ export default {
       default:'left',
       validator(value){
         return value !== 'left' && value !== 'right' ? false : true
-
       }
     }
   }
@@ -45,8 +44,20 @@ export default {
     border: 1px solid $border-color;
     background: $button-bg;
     &:hover {border-color: $border-color-hover;}
-    &:active {border-color: $button-active-bg;}
+    &:active {background-color: $button-active-bg;}
     &:focus {outline: none;}
+    &[disabled] {
+      >.icon{
+        fill: #808080;
+      }
+      cursor: not-allowed;
+    }
+    &[disabled]:hover {
+      border-color: $border-color;
+    }
+    &[disabled]:active {
+      background-color:$button-bg;
+    }
     >.Content{order: 2;}
     >.icon{order:1;margin-right:.1em;}
     &.icon-right{

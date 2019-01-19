@@ -1,4 +1,5 @@
 module.exports = {
+    base:'/my-ui/',
     title: 'My-ui',
     description: 'ui框架',
     themeConfig: {
@@ -18,7 +19,15 @@ module.exports = {
             },
             {
                 title: '组件',
-                children: ['/components/button']
+                children: [
+                    '/components/layout',
+                    '/components/button',
+                    '/components/input',
+                    '/components/tabs',
+                    '/components/grid',
+                    '/components/toast',
+                    '/components/tabs',
+                ]
             }
 
         ]
