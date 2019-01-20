@@ -26,7 +26,6 @@ module.exports = {
                     '/components/tabs',
                     '/components/grid',
                     '/components/toast',
-                    '/components/tabs',
                 ]
             }
 

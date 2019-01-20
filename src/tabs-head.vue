@@ -13,10 +13,11 @@ export default {
   name:"MTabsHead",
   inject:['eventBus'],
   mounted(){
+    let tabsHeadLeft = this.$el.getBoundingClientRect().left
     this.eventBus.$on('update:selected',(item,vm)=>{
       let {width,height,left,top} = vm.$el.getBoundingClientRect()
       this.$refs.line.style.width = `${width}px`
-      this.$refs.line.style.left = `${left}px`
+      this.$refs.line.style.left = `${left-tabsHeadLeft}px`
     })
   }
 }

@@ -1,8 +1,23 @@
 <template>
   <div style="padding-top:20px;padding-left:100px;">
-    <!--<m-cascader :source.sync="source" popover-height="200px"-->
-    <!--:selected.sync="selected" :load-data="loadData"></m-cascader>-->
-    <m-input error="请输入正确的用户名"></m-input>
+    <m-tabs>
+      <m-tabs-head>
+        <m-tabs-item name="tech">科技</m-tabs-item>
+        <m-tabs-item name="finance">财经</m-tabs-item>
+        <m-tabs-item name="sport">体育</m-tabs-item>
+      </m-tabs-head>
+      <m-tabs-body>
+        <m-tabs-pane name="tech">
+          <p>科技板块内容</p>
+        </m-tabs-pane>
+        <m-tabs-pane name="finance">
+          <p>财经板块内容</p>
+        </m-tabs-pane>
+        <m-tabs-pane name="sport">
+          <p>体育板块内容</p>
+        </m-tabs-pane>
+      </m-tabs-body>
+    </m-tabs>
   </div>
 </template>
 <script>
@@ -10,6 +25,11 @@ import Cascader from './cascader';
 import Button from "./button";
 import Input from "./input";
 import db from "./db";
+import Tabs from './tabs'
+import Tabshead from './tabs-head';
+import TabsBody from './tabs-body';
+import TabsItem from './tabs-item';
+import TabsPane from './tabs-pane';
 import {removeEventListener} from './click-outside'
 //db里面的parent_id 0 是第一级别省 省的id对应的是市的parent_id
 function ajax(parentId = 0){
@@ -34,6 +54,11 @@ export default {
     "m-button":Button,
     "m-cascader":Cascader,
     "m-input":Input,
+    'm-tabs':Tabs,
+    'm-tabs-head': Tabshead,
+    'm-tabs-body': TabsBody,
+    'm-tabs-item': TabsItem,
+    'm-tabs-pane': TabsPane
   },
   data(){
     return{
