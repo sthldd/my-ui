@@ -1,5 +1,5 @@
 ---
-title: Grid
+title: Grid 栅格
 ---
 
-# 栅格布局
+# Grid 栅格
