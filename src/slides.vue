@@ -8,16 +8,22 @@
       </div>
     </div>
     <div class="dots">
+      <span class="NumberIndex" @click="onClickPrev"><m-icon name="left"></m-icon></span>
       <span class="NumberIndex" v-for="index in childrenLength" :class="{active:selectedIndex === index-1}"
       @click="select(index - 1)"
       >{{index}}</span>
+      <span class="NumberIndex"  @click="onClickNext"><m-icon name="right"></m-icon></span>
     </div>
   </div>
 </template>
 
 <script>
+  import Icon from  './icon'
     export default {
         name: "MSlides",
+        components:{
+          'm-icon':Icon
+        },
         props:{
           selected:{
               type:String
@@ -38,7 +44,7 @@
         mounted () {
             this.updateChildren()
             this.playAutomatically()
-            this.childrenLength = this.$children.length
+            this.childrenLength = this.items.length
         },
         updated () {
             this.updateChildren()
@@ -49,10 +55,19 @@
                 return index === -1 ? 0 : index
             },
             names () {
-                return this.$children.map(vm => vm.name)
+                return this.items.map(vm => vm.name)
+            },
+            items(){
+                return this.$children.filter((vm)=>vm.$options.name === 'MSlideItem')
             }
         },
         methods: {
+            onClickPrev(){
+                this.select(this.selectedIndex - 1)
+            },
+            onClickNext(){
+                this.select(this.selectedIndex + 1)
+            },
             onMouseEnter () {
                 this.pause()
             },
@@ -103,18 +118,18 @@
                 this.$emit('update:selected', this.names[newIndex])
             },
             getSelected () {
-                let first = this.$children[0]
+                let first = this.items[0]
                 return this.selected || first.name
             },
             updateChildren () {
                 let selected = this.getSelected()
-                this.$children.forEach((vm) => {
+                this.items.forEach((vm) => {
                     let reverse = this.selectedIndex > this.lastSelectedIndex ? false : true
                     if (this.timerId) {
-                        if (this.lastSelectedIndex === this.$children.length - 1 && this.selectedIndex === 0) {
+                        if (this.lastSelectedIndex === this.items.length - 1 && this.selectedIndex === 0) {
                             reverse = false
                         }
-                        if (this.lastSelectedIndex === 0 && this.selectedIndex === this.$children.length - 1) {
+                        if (this.lastSelectedIndex === 0 && this.selectedIndex === this.items.length - 1) {
                             reverse = true
                         }
                     }
