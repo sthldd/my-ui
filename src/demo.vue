@@ -42,10 +42,8 @@ export default {
   },
   data(){
     return{
-        selected:undefined
+        selected:'3'
     }
-  },
-  created() {
   },
   destroyed(){
   },
