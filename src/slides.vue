@@ -10,7 +10,7 @@
     <div class="dots">
       <span class="NumberIndex" @click="onClickPrev"><m-icon name="left"></m-icon></span>
       <span class="NumberIndex" v-for="index in childrenLength" :class="{active:selectedIndex === index-1}"
-      @click="select(index - 1)"
+      @click="select(index - 1)" :data-index="index"
       >{{index}}</span>
       <span class="NumberIndex"  @click="onClickNext"><m-icon name="right"></m-icon></span>
     </div>
@@ -30,7 +30,11 @@
           },
           autoPlay:{
               type: Boolean,
-              default:true
+              default:false
+          },
+          autoPlayDelay:{
+              type:Number,
+              default: 3000
           }
         },
         data () {
@@ -43,7 +47,9 @@
         },
         mounted () {
             this.updateChildren()
-            this.playAutomatically()
+            if(this.autoPlay){
+                this.playAutomatically()
+            }
             this.childrenLength = this.items.length
         },
         updated () {
@@ -103,9 +109,9 @@
                     let index = this.names.indexOf(this.getSelected())
                     let newIndex = index + 1
                     this.select(newIndex) // 告诉外界选中 newIndex
-                    this.timerId = setTimeout(run, 3000)
+                    this.timerId = setTimeout(run, this.autoPlayDelay)
                 }
-                this.timerId = setTimeout(run, 3000)
+                this.timerId = setTimeout(run, this.autoPlayDelay)
             },
             pause () {
                 window.clearTimeout(this.timerId)
