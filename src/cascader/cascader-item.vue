@@ -25,7 +25,7 @@
 </template>
 
 <script>
-  import Icon from './icon'
+  import Icon from '../icon'
   export default {
     name: "MCascaderItem",
     components:{Icon},
@@ -83,7 +83,7 @@
 </script>
 
 <style scoped lang="scss">
-  @import "var";
+  @import "../var";
   .cascaderItem {
     display: flex;
     align-items: flex-start;

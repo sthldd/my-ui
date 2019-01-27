@@ -15,7 +15,7 @@
 
 <script>
   import CascaderItem from './cascader-item'
-  import ClickOutside from  './click-outside'
+  import ClickOutside from '../click-outside'
 
   export default {
     name: 'MCascader',
@@ -117,7 +117,7 @@
 </script>
 
 <style lang="scss" scoped>
-@import "var";
+@import "../var";
   .cascader{
     position: relative;
     border:1px solid red;

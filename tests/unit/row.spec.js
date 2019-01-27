@@ -1,11 +1,11 @@
 import chai,{expect} from 'chai'
 import {shallowMount,mount} from '@vue/test-utils'
-import Button from '@/button.vue'
+import Button from '../../src/button/button.vue'
 import sinon from 'sinon'
 import sinonChai  from 'sinon-chai'
 chai.use(sinonChai)
-import Row from '@/row.vue'
-import Col from '@/col.vue'
+import Row from '../../src/grid/row.vue'
+import Col from '../../src/grid/col.vue'
 
 describe('Row', () => {
   it('存在', () => {

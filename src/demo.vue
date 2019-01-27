@@ -14,9 +14,9 @@
   </div>
 </template>
 <script>
-import db from "./db";
-import Slides from './slides';
-import SlidesItem from './slides-item';
+import db from "../tests/fixture/db";
+import Slides from './slides/slides';
+import SlidesItem from './slides/slides-item';
 //db里面的parent_id 0 是第一级别省 省的id对应的是市的parent_id
 // function ajax(parentId = 0){
 //   return new Promise((resolve,reject)=>{

@@ -8,7 +8,7 @@
  </button>
 </template>
 <script>
-import Icon from "./icon";
+import Icon from "../icon";
 export default {
   components:{
     'm-icon':Icon
@@ -30,7 +30,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-   @import "var";
+   @import "../var";
   .m-button{
     padding: 0 1em;
     display: inline-flex;
