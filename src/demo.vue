@@ -1,22 +1,17 @@
 <template>
   <div>
-    <m-slides :selected.sync="selected" class="wrapper">
-      <m-slides-item name="1">
-        <div class="demo">1</div>
-      </m-slides-item>
-      <m-slides-item name="2">
-        <div class="demo">2</div>
-      </m-slides-item>
-      <m-slides-item name="3">
-        <div class="demo">3</div>
-      </m-slides-item>
-    </m-slides>
+    <m-nav :selected.sync="selected">
+      <m-nav-item name="home">首页</m-nav-item>
+      <m-nav-item name="about">关于</m-nav-item>
+      <m-nav-item name="fuck">去死</m-nav-item>
+    </m-nav>
   </div>
 </template>
 <script>
 import db from "../tests/fixture/db";
-import Slides from './slides/slides';
-import SlidesItem from './slides/slides-item';
+import Nav from './nav/nav';
+import NavItem from './nav/nav-item';
+import SubNav from './nav/sub-nav';
 //db里面的parent_id 0 是第一级别省 省的id对应的是市的parent_id
 // function ajax(parentId = 0){
 //   return new Promise((resolve,reject)=>{
@@ -37,12 +32,13 @@ import SlidesItem from './slides/slides-item';
 export default {
   name:'demo',
   components:{
-    'm-slides':Slides,
-    'm-slides-item':SlidesItem
+    'm-nav':Nav,
+    'm-nav-item':NavItem,
+    'm-sub-nav':SubNav,
   },
   data(){
     return{
-        selected:undefined
+        selected:['home']
     }
   },
   destroyed(){
@@ -51,17 +47,10 @@ export default {
 
   },
   methods:{
-    // loadData(item,upDateSource){
-    //   let {id} = item
-    //   ajax(id).then((result)=>{
-    //     upDateSource(result)
-    //   })
-    // }
   }
 }
 </script>
 <style lang="scss" scoped>
-
   *{
     margin:0;
     padding: 0;
@@ -72,18 +61,6 @@ export default {
   }
   body{
     font-size: 14px;
-  }
-  .wrapper{
-    margin:0 40px;
-  }
-  .demo{
-    width:100%;
-    height:350px;
-    background: #ddd;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 32px;
   }
 </style>
 
