@@ -2,7 +2,12 @@
   <div>
     <m-nav :selected.sync="selected">
       <m-nav-item name="home">首页</m-nav-item>
-      <m-nav-item name="about">关于</m-nav-item>
+      <m-sub-nav>
+        <template slot="title">关于</template>
+        <m-nav-item name="culture">企业文化</m-nav-item>
+        <m-nav-item name="developers">开发团队</m-nav-item>
+        <m-nav-item name="contacts">联系电话</m-nav-item>
+      </m-sub-nav>
       <m-nav-item name="fuck">去死</m-nav-item>
     </m-nav>
   </div>
@@ -38,7 +43,7 @@ export default {
   },
   data(){
     return{
-        selected:['home']
+        selected:['culture']
     }
   },
   destroyed(){

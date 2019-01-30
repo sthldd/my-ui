@@ -7,6 +7,16 @@
 <script>
     export default {
         name: "MNav",
+        provide(){
+          return{
+              root:this
+          }
+        },
+        data(){
+            return{
+                items:[]
+            }
+        },
         props:{
             selected:{
                 type:Array,
@@ -25,6 +35,9 @@
             this. updateChildren()
         },
         methods:{
+          addItems(vm){
+            this.items.push(vm)
+          },
           updateChildren(){
               this.items.forEach((vm)=>{
                   if(this.selected.indexOf(vm.name)>=0){
@@ -50,11 +63,6 @@
               })
           }
         },
-        computed:{
-            items(){
-                return this.$children.filter(vm=>vm.$options.name === 'MNavItem')
-            }
-        }
     }
 </script>
 

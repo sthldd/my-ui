@@ -7,6 +7,7 @@
 <script>
     export default {
         name: "MNavItem",
+        inject:['root'],
         props:{
             name:{
                 type:String,
@@ -17,6 +18,9 @@
             return{
                 selected:false
             }
+        },
+        created(){
+          this.root.addItems(this)
         },
         methods:{
             onClick(){
