@@ -28,10 +28,9 @@
 <style scoped lang="scss">
   .m-sub-nav{
     position: relative;
-    padding: 10px 20px;
     >span{
       padding: 10px 20px;
-      vertical-align: top;
+      display: block;
     }
     &-popover{
        position: absolute;
@@ -40,5 +39,10 @@
        left:0;
        border:1px solid red;
      }
+  }
+  .m-sub-nav .m-sub-nav .m-sub-nav-popover{
+    top:0;
+    left:100%;
+    margin-left: 5px;
   }
 </style>

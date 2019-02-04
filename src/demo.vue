@@ -6,7 +6,17 @@
         <template slot="title">关于</template>
         <m-nav-item name="culture">企业文化</m-nav-item>
         <m-nav-item name="developers">开发团队</m-nav-item>
-        <m-nav-item name="contacts">联系电话</m-nav-item>
+        <m-sub-nav>
+          <template slot="title">联系电话</template>
+          <m-nav-item name="qq">QQ</m-nav-item>
+          <m-nav-item name="wechat">微信</m-nav-item>
+          <m-sub-nav>
+            <template slot="title">电话</template>
+            <m-nav-item name="yi">移动</m-nav-item>
+            <m-nav-item name="lian">联通</m-nav-item>
+            <m-nav-item name="dian">电信</m-nav-item>
+          </m-sub-nav>
+        </m-sub-nav>
       </m-sub-nav>
       <m-nav-item name="fuck">去死</m-nav-item>
     </m-nav>

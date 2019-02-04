@@ -34,7 +34,7 @@
   .m-nav-item{
     padding: 10px 20px;
     &.selected{
-    background-color: red;
-     }
+      background-color: red;
+    }
   }
 </style>
