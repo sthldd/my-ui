@@ -26,6 +26,7 @@
 </script>
 
 <style scoped lang="scss">
+  @import "../var";
   .m-sub-nav{
     position: relative;
     >span{
@@ -37,7 +38,13 @@
        white-space: nowrap;
        top:100%;
        left:0;
-       border:1px solid red;
+       background: white;
+       margin-top: 1px;
+       box-shadow: 0 0 3px fade_out(black,0.8);
+       border-radius: 4px;
+       color:$light-color;
+       font-size: $font-size;
+       min-width: 6em;
      }
   }
   .m-sub-nav .m-sub-nav .m-sub-nav-popover{

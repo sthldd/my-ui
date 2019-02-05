@@ -66,9 +66,12 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+  @import "../var";
   .m-nav{
     display: flex;
-    border:1px solid red;
+    border-bottom: 1px solid #eee;
+    color: $color;
+    cursor: default;
   }
 </style>
