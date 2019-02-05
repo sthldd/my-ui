@@ -1,5 +1,6 @@
 <template>
   <div class="m-nav">
+    {{namePath}}
     <slot></slot>
   </div>
 </template>
@@ -14,7 +15,8 @@
         },
         data(){
             return{
-                items:[]
+                items:[],
+                namePath:[]
             }
         },
         props:{

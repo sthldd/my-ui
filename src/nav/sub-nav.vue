@@ -12,14 +12,30 @@
 <script>
     export default {
         name: "MSubNav",
+        inject:['root'],
         data(){
             return{
-                open:false
+                open:false,
+                active:false,
             }
+        },
+        props:{
+          name:{
+              type:String,
+              required:true,
+          }
         },
         methods:{
             onClick(){
                 this.open = !this.open
+            },
+            x(){
+                this.root.namePath.unshift(this.name)
+                if(this.$parent.x){
+                    this.$parent.x()
+                }else{
+
+                }
             }
         }
     }
@@ -29,6 +45,17 @@
   @import "../var";
   .m-sub-nav{
     position: relative;
+    /*&.active{*/
+      /*&::after{*/
+          /*content: '';*/
+          /*position: absolute;*/
+          /*width:100%;*/
+          /*border-bottom: 2px solid #4a90e2;*/
+          /*bottom: 0;*/
+          /*left:0;*/
+      /*}*/
+
+    /*}*/
     >span{
       padding: 10px 20px;
       display: block;
