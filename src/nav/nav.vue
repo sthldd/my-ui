@@ -1,6 +1,5 @@
 <template>
   <div class="m-nav">
-    {{namePath}}
     <slot></slot>
   </div>
 </template>
@@ -75,5 +74,6 @@
     border-bottom: 1px solid #eee;
     color: $color;
     cursor: default;
+    user-select: none;
   }
 </style>
