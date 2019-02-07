@@ -43,7 +43,6 @@
         bottom: 0;
         position: absolute;
         width:100%;
-        border-bottom: 2px solid #4a90e2;
         left:0;
       }
     }

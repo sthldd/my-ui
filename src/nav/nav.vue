@@ -1,5 +1,5 @@
 <template>
-  <div class="m-nav">
+  <div class="m-nav" :class="{vertical}">
     <slot></slot>
   </div>
 </template>
@@ -9,7 +9,8 @@
         name: "MNav",
         provide(){
           return{
-              root:this
+              root:this,
+              vertical:this.vertical
           }
         },
         data(){
@@ -24,6 +25,10 @@
                 default:()=>[]
             },
             multiple:{
+                type:Boolean,
+                default:false
+            },
+            vertical:{
                 type:Boolean,
                 default:false
             }
@@ -71,9 +76,13 @@
   @import "../var";
   .m-nav{
     display: flex;
-    border-bottom: 1px solid #eee;
+    //border-bottom: 1px solid #eee;
     color: $color;
     cursor: default;
     user-select: none;
+    border:1px solid red;
+    &.vertical{
+      flex-direction: column;
+    }
   }
 </style>

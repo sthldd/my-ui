@@ -1,6 +1,6 @@
 <template>
   <div>
-    <m-nav :selected.sync="selected">
+    <m-nav :selected.sync="selected" vertical style="width:200px;">
       <m-nav-item name="home">首页</m-nav-item>
       <m-sub-nav name="about">
         <template slot="title">关于</template>

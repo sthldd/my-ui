@@ -7,9 +7,11 @@
        </span>
 
     </span>
-    <div class="m-sub-nav-popover" v-show="open">
-      <slot></slot>
-    </div>
+    <transition @leave="leave" @enter="enter" @after-leave="afterLeave">
+      <div class="m-sub-nav-popover" v-show="open" :class="{vertical}">
+        <slot></slot>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -18,7 +20,7 @@
     import MIcon from  '../icon'
     export default {
         name: "MSubNav",
-        inject:['root'],
+        inject:['root','vertical'],
         directives: {ClickOutside},
         components:{MIcon},
         data(){
@@ -38,6 +40,18 @@
           }
         },
         methods:{
+            enter(el,done){
+                let {height} = el.getBoundingClientRect()
+                el.style.height = `${height}px`
+                done()
+            },
+            leave(el,done){
+                el.style.height = 0
+                done()
+            },
+            afterLeave(el){
+              el.style.height = 'auto'
+            },
             onClick(){
                 this.open = !this.open
             },
@@ -65,7 +79,6 @@
           content: '';
           position: absolute;
           width:100%;
-          border-bottom: 2px solid #4a90e2;
           bottom: 0;
           left:0;
       }
@@ -91,6 +104,12 @@
        color:$light-color;
        font-size: $font-size;
        min-width: 6em;
+      &.vertical{
+        position: static;
+        border-radius:0;
+        border:none;
+        box-shadow:none;
+      }
      }
   }
   .m-sub-nav .m-sub-nav {
