@@ -7,7 +7,7 @@
        </span>
 
     </span>
-    <transition @leave="leave" @enter="enter" @after-leave="afterLeave">
+    <transition @leave="leave" @enter="enter" @after-leave="afterLeave" @after-enter="afterEnter">
       <div class="m-sub-nav-popover" v-show="open" :class="{vertical}">
         <slot></slot>
       </div>
@@ -41,13 +41,26 @@
         },
         methods:{
             enter(el,done){
+                el.style.height = 'auto'
                 let {height} = el.getBoundingClientRect()
+                el.style.height = 0
+                el.getBoundingClientRect()
                 el.style.height = `${height}px`
-                done()
+                el.addEventListener('transitionend',()=>{
+                    done()
+                })
+            },
+            afterEnter(el){
+                el.style.height = 'auto'
             },
             leave(el,done){
+                let {height} = el.getBoundingClientRect()
+                el.style.height = `${height}px`
+                el.getBoundingClientRect()
                 el.style.height = 0
-                done()
+                el.addEventListener('transitionend',()=>{
+                    done()
+                })
             },
             afterLeave(el){
               el.style.height = 'auto'
@@ -109,6 +122,8 @@
         border-radius:0;
         border:none;
         box-shadow:none;
+        transition: height 250ms;
+        overflow: hidden;
       }
      }
   }
