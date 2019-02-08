@@ -1,17 +1,23 @@
 <template>
-  <div class="m-sub-nav" :class="{active}" v-click-outside="close">
+  <div class="m-sub-nav" :class="{active,vertical}" v-click-outside="close">
     <span class="m-sub-nav-label" @click="onClick">
        <slot name="title"></slot>
-       <span class="m-sub-nav-icon" :class="{open}">
+       <span class="m-sub-nav-icon" :class="{open,vertical}">
          <m-icon name="right"></m-icon>
        </span>
-
     </span>
-    <transition @leave="leave" @enter="enter" @after-leave="afterLeave" @after-enter="afterEnter">
-      <div class="m-sub-nav-popover" v-show="open" :class="{vertical}">
+    <template v-if="vertical">
+      <transition @leave="leave" @enter="enter" @after-leave="afterLeave" @after-enter="afterEnter">
+        <div class="m-sub-nav-popover" v-show="open" :class="{vertical}">
+          <slot></slot>
+        </div>
+      </transition>
+    </template>
+    <template v-else>
+      <div class="m-sub-nav-popover" v-show="open">
         <slot></slot>
       </div>
-    </transition>
+    </template>
   </div>
 </template>
 
@@ -87,13 +93,15 @@
   @import "../var";
   .m-sub-nav{
     position: relative;
-    &.active{
-      &::after{
+    &:not(.vertical) {
+      &.active {
+        &::after {
           content: '';
           position: absolute;
-          width:100%;
+          width: 100%;
           bottom: 0;
-          left:0;
+          left: 0;
+        }
       }
     }
     &-label{
@@ -107,6 +115,7 @@
     &-icon{display: none;}
     &-popover{
        position: absolute;
+       transition: height 250ms;
        white-space: nowrap;
        top:100%;
        left:0;
@@ -122,7 +131,6 @@
         border-radius:0;
         border:none;
         box-shadow:none;
-        transition: height 250ms;
         overflow: hidden;
       }
      }
@@ -144,14 +152,20 @@
       justify-content: space-between;
     }
     .m-sub-nav-icon{
-     display: inline-flex;
+      display: inline-flex;
       margin-left: 1em;
+      transition: all 250ms;
       svg{
         fill:$light-color;
       }
+      &.vertical{
+        transform: rotate(90deg);
+        &.open{
+          transform: rotate(270deg);
+        }
+      }
       &.open{
         transform: rotate(180deg);
-        transition: all 250ms;
       }
     }
   }
