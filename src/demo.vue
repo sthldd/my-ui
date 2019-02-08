@@ -18,7 +18,7 @@
           </m-sub-nav>
         </m-sub-nav>
       </m-sub-nav>
-      <m-nav-item name="fuck">去死</m-nav-item>
+      <m-nav-item name="fuck">你好</m-nav-item>
     </m-nav>
     <p style="border:1px solid red;height:300px;">1</p>
     <m-nav :selected.sync="selected" vertical style="width:200px;">
@@ -39,7 +39,7 @@
           </m-sub-nav>
         </m-sub-nav>
       </m-sub-nav>
-      <m-nav-item name="fuck">去死</m-nav-item>
+      <m-nav-item name="fuck">你好</m-nav-item>
     </m-nav>
     <p>用户选择了{{selected}}</p>
   </div>
