@@ -1,6 +1,6 @@
 <template>
   <div>
-    <m-pager :total-page="20" :current-page="20" style="margin:40px;"></m-pager>
+    <m-pager :total-page="1" :current-page.sync="currentPage" style="margin:40px;" :hide-if-one-page="false"></m-pager>
   </div>
 </template>
 <script>
@@ -30,7 +30,7 @@ export default {
   },
   data(){
     return{
-        selected:'culture'
+        currentPage:1
     }
   },
   destroyed(){
