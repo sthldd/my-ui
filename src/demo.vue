@@ -1,6 +1,6 @@
 <template>
   <div>
-    <m-pager :total-page="20" :current-page="3" style="margin:40px;"></m-pager>
+    <m-pager :total-page="20" :current-page="20" style="margin:40px;"></m-pager>
   </div>
 </template>
 <script>
