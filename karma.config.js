@@ -2,7 +2,7 @@ var webpackConfig = require('@vue/cli-service/webpack.config.js')
 
 module.exports = function (config) {
     config.set({
-        frameworks: ['mocha'],
+        frameworks: ['karma-sinon-chai'],
 
         files: [
             'tests/**/*.spec.js'

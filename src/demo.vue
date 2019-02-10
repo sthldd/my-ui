@@ -1,32 +1,11 @@
 <template>
   <div>
-    <m-nav :selected.sync="selected">
-      <m-nav-item name="home">首页</m-nav-item>
-      <m-sub-nav name="about">
-        <template slot="title">关于</template>
-        <m-nav-item name="culture">企业文化</m-nav-item>
-        <m-nav-item name="developers">开发团队</m-nav-item>
-        <m-sub-nav name="phone">
-          <template slot="title">联系电话</template>
-          <m-nav-item name="qq">QQ</m-nav-item>
-          <m-nav-item name="wechat">微信</m-nav-item>
-          <m-sub-nav name="concat">
-            <template slot="title">电话</template>
-            <m-nav-item name="yi">移动</m-nav-item>
-            <m-nav-item name="lian">联通</m-nav-item>
-            <m-nav-item name="dian">电信</m-nav-item>
-          </m-sub-nav>
-        </m-sub-nav>
-      </m-sub-nav>
-      <m-nav-item name="fuck">你好</m-nav-item>
-    </m-nav>
+    <m-pager :total-page="20" :current-page="3" style="margin:40px;"></m-pager>
   </div>
 </template>
 <script>
 import db from "../tests/fixture/db";
-import Nav from './nav/nav';
-import NavItem from './nav/nav-item';
-import SubNav from './nav/sub-nav';
+import MPager from './pager';
 //db里面的parent_id 0 是第一级别省 省的id对应的是市的parent_id
 // function ajax(parentId = 0){
 //   return new Promise((resolve,reject)=>{
@@ -47,9 +26,7 @@ import SubNav from './nav/sub-nav';
 export default {
   name:'demo',
   components:{
-    'm-nav':Nav,
-    'm-nav-item':NavItem,
-    'm-sub-nav':SubNav,
+    'm-pager':MPager,
   },
   data(){
     return{
