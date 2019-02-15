@@ -2,7 +2,10 @@
   <div style="margin:100px;">
     <m-uploader accept="image/*" method="POST" action="https://node-server-mlx.herokuapp.com/upload" name="file"
       :parseResponse="parseResponse" :file-list.sync="fileList">
-      <button>上传</button>
+      <m-button>
+        <m-icon name="upload"></m-icon>
+        上传
+      </m-button>
       <template slot="tips">
         <div>只能上传300kb以内的文件</div>
       </template>
@@ -28,11 +31,14 @@ import MUploader from './uploader';
 //     },3000)
 //   })
 // }
-
+import MButton from  './button/button'
+import MIcon from  './icon'
 export default {
   name:'demo',
   components:{
     'm-uploader':MUploader,
+    'm-button':MButton,
+    MIcon,
   },
   data(){
     return{
