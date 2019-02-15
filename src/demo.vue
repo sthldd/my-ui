@@ -1,7 +1,8 @@
 <template>
   <div style="margin:100px;">
+    <p class="error-message">{{error}}</p>
     <m-uploader accept="image/*" method="POST" action="https://node-server-mlx.herokuapp.com/upload" name="file"
-      :parseResponse="parseResponse" :file-list.sync="fileList">
+      :parseResponse="parseResponse" :file-list.sync="fileList" @error="error=$event" :size-limit="1024*1024">
       <m-button>
         <m-icon name="upload"></m-icon>
         上传
@@ -42,7 +43,8 @@ export default {
   },
   data(){
     return{
-        fileList:[]
+        fileList:[],
+        error:''
     }
   },
   destroyed(){
@@ -70,6 +72,9 @@ export default {
   }
   body{
     font-size: 14px;
+  }
+  .error-message{
+    color: red;
   }
 </style>
 
