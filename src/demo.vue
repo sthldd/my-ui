@@ -1,11 +1,17 @@
 <template>
-  <div>
-    <m-pager :total-page="1" :current-page.sync="currentPage" style="margin:40px;" :hide-if-one-page="false"></m-pager>
+  <div style="margin:100px;">
+    <m-uploader accept="image/*" method="POST" action="https://node-server-mlx.herokuapp.com/upload" name="file"
+      :parseResponse="parseResponse" :file-list.sync="fileList">
+      <button>上传</button>
+      <template slot="tips">
+        <div>只能上传300kb以内的文件</div>
+      </template>
+    </m-uploader>
   </div>
 </template>
 <script>
 import db from "../tests/fixture/db";
-import MPager from './pager';
+import MUploader from './uploader';
 //db里面的parent_id 0 是第一级别省 省的id对应的是市的parent_id
 // function ajax(parentId = 0){
 //   return new Promise((resolve,reject)=>{
@@ -26,11 +32,11 @@ import MPager from './pager';
 export default {
   name:'demo',
   components:{
-    'm-pager':MPager,
+    'm-uploader':MUploader,
   },
   data(){
     return{
-        currentPage:1
+        fileList:[]
     }
   },
   destroyed(){
@@ -39,6 +45,11 @@ export default {
 
   },
   methods:{
+      parseResponse(response){
+        let object = JSON.parse(response)
+        let url = `https://node-server-mlx.herokuapp.com/preview/${object.key}`
+        return url
+      }
   }
 }
 </script>
