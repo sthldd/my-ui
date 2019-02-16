@@ -51,6 +51,14 @@
           },
           sizeLimit:{
             type:Number
+          },
+          multiple:{
+            type:Boolean,
+            default:false
+          },
+          acceptType:{
+            type:String,
+            default:'image/*'
           }
         },
         data(){
@@ -71,7 +79,7 @@
             onClickUpload(){
               let input = this.createInput()
               input.addEventListener('change',()=>{
-                  this.uploadFile(input.files[0])
+                  this.uploadFile(input.files)
                   input.remove()
               })
               input.click()
@@ -80,32 +88,50 @@
                 this.$refs.trigger.innerHTML = ''
                 let input = document.createElement('input')
                 input.type = 'file'
+                input.multiple = this.multiple;
+                input.accept = this.acceptType
                 this.$refs.trigger.appendChild(input)
                 return input
             },
-            beforeUploadFile(rawFile,newName){
-                let {size,type} = rawFile
-                if(size > this.sizeLimit){
-                    this.$emit('error','文件大于2M')
-                    return false
-                }else{
-                    this.$emit('update:fileList',[...this.fileList,{name:newName,size,type,status:'uploading'}])
-                    return true
+            beforeUploadFile(rawFiles,newNames){
+                rawFiles = Array.from(rawFiles)
+                for(var i = 0;i<rawFiles.length;i++){
+                    let {size,type} = rawFiles[i]
+                    if(size > this.sizeLimit){
+                        this.$emit('error','文件大于2M')
+                        return false
+                    }
                 }
-            },
-            uploadFile(rawFile){
-                let {name} = rawFile
-                let newName = this.generateName(name)
-                if(!this.beforeUploadFile(rawFile,newName)){return}
-                let formData = new FormData()
-                formData.append(this.name,rawFile)
-                this.doUploadFile(formData,(response)=>{
-                    let url = this.parseResponse(response)
-                    this.url = url
-                    this.afterUploadFile(newName,url)
-                },(xhr)=>{
-                    this.uploadError(xhr,newName)
+                let x = rawFiles.map((rawFile,i)=>{
+                    let {type,size} = rawFile
+                    return {name:newNames[i],type,size,status:'uploading'}
                 })
+                this.$emit('update:fileList',[...this.fileList,...x])
+                return true
+
+            },
+            uploadFile(rawFiles){
+                let newNames = []
+                for(var i = 0;i<rawFiles.length;i++){
+                    let rawFile = rawFiles[i]
+                    let {name} = rawFile
+                    let newName = this.generateName(name)
+                    newNames[i] = newName
+                }
+                if(!this.beforeUploadFile(rawFiles,newNames)){return}
+                for(var i = 0;i<rawFiles.length;i++){
+                    let rawFile = rawFiles[i]
+                    let newName = newNames[i]
+                    let formData = new FormData()
+                    formData.append(this.name,rawFile)
+                    this.doUploadFile(formData,(response)=>{
+                        let url = this.parseResponse(response)
+                        this.url = url
+                        this.afterUploadFile(newName,url)
+                    },(xhr)=>{
+                        this.uploadError(xhr,newName)
+                    })
+                }
             },
             uploadError(xhr,newName){
                 let file = this.fileList.filter(f=>f.name === newName)[0]
