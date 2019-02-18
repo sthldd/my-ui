@@ -1,5 +1,8 @@
 ---
-title: Popover
+title: Popover 弹出框
 ---
 
-# Popover
+# Popover 弹出框
+<ClientOnly>
+  <popover-demo></popover-demo>
+</ClientOnly>

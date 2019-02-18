@@ -1,46 +1,81 @@
 <template>
     <div>
         <h3 class="section">基础用法</h3>
-        <p>基础的按钮用法。</p>
+        <p>使用单一分栏创建基础的栅格布局。</p>
         <div class="demo-wrapper">
-            <m-button>默认按钮</m-button>
+            <m-row>
+                <m-col span="24"><div class="grid-content bg-purple-dark"></div></m-col>
+            </m-row>
+            <m-row>
+                <m-col span="12"><div class="grid-content bg-purple"></div></m-col>
+                <m-col span="12"><div class="grid-content bg-purple-light"></div></m-col>
+            </m-row>
+            <m-row>
+                <m-col span="8"><div class="grid-content bg-purple"></div></m-col>
+                <m-col span="8"><div class="grid-content bg-purple-light"></div></m-col>
+                <m-col span="8"><div class="grid-content bg-purple"></div></m-col>
+            </m-row>
+            <m-row>
+                <m-col span="6"><div class="grid-content bg-purple"></div></m-col>
+                <m-col span="6"><div class="grid-content bg-purple-light"></div></m-col>
+                <m-col span="6"><div class="grid-content bg-purple"></div></m-col>
+                <m-col span="6"><div class="grid-content bg-purple-light"></div></m-col>
+            </m-row>
+            <m-row>
+                <m-col span="4"><div class="grid-content bg-purple"></div></m-col>
+                <m-col span="4"><div class="grid-content bg-purple-light"></div></m-col>
+                <m-col span="4"><div class="grid-content bg-purple"></div></m-col>
+                <m-col span="4"><div class="grid-content bg-purple-light"></div></m-col>
+                <m-col span="4"><div class="grid-content bg-purple"></div></m-col>
+                <m-col span="4"><div class="grid-content bg-purple-light"></div></m-col>
+            </m-row>
             <pre><code>{{code1}}</code></pre>
         </div>
-        <h3 class="section">禁用状态</h3>
-        <p>按钮不可用状态。</p>
+        <h3 class="section">分栏间隔</h3>
+        <p>分栏之间存在间隔。</p>
         <div class="demo-wrapper">
-            <m-button disabled>设置</m-button>
+            <m-row :gutter="20">
+                <m-col :span="5"><div class="grid-content bg-purple"></div></m-col>
+                <m-col :span="5"><div class="grid-content bg-purple"></div></m-col>
+                <m-col :span="5"><div class="grid-content bg-purple"></div></m-col>
+                <m-col :span="5"><div class="grid-content bg-purple"></div></m-col>
+            </m-row>
             <pre><code>{{code2}}</code></pre>
         </div>
-
-        <h3 class="section">加载状态</h3>
-        <p>点击按钮后进行数据加载操作，在按钮上显示加载状态。</p>
+        <h3 class="section">混合布局</h3>
+        <p>通过基础的 1/24 分栏任意扩展组合形成较为复杂的混合布局。</p>
         <div class="demo-wrapper">
-            <m-button :loading="true">设置</m-button>
+            <m-row :gutter="20">
+                <m-col :span="16"><div class="grid-content bg-purple"></div></m-col>
+                <m-col :span="8"><div class="grid-content bg-purple"></div></m-col>
+            </m-row>
+            <m-row :gutter="20">
+                <m-col :span="8"><div class="grid-content bg-purple"></div></m-col>
+                <m-col :span="8"><div class="grid-content bg-purple"></div></m-col>
+                <m-col :span="4"><div class="grid-content bg-purple"></div></m-col>
+                <m-col :span="4"><div class="grid-content bg-purple"></div></m-col>
+            </m-row>
+            <m-row :gutter="20">
+                <m-col :span="4"><div class="grid-content bg-purple"></div></m-col>
+                <m-col :span="16"><div class="grid-content bg-purple"></div></m-col>
+                <m-col :span="4"><div class="grid-content bg-purple"></div></m-col>
+            </m-row>
             <pre><code>{{code3}}</code></pre>
         </div>
-
-        <h3 class="section">图标按钮</h3>
-        <p>带图标的按钮可增强辨识度（有文字）或节省空间（无文字）。</p>
+        <h3 class="section">响应式布局</h3>
+        <p>预设了五个响应尺寸：phone、ipad、narrow-pc、pc 和 wide-pc。</p>
         <div class="demo-wrapper">
-            <m-button icon="setting">设置</m-button>
-            <m-button icon="download">下载</m-button>
-            <m-button icon="left">上一页</m-button>
-            <m-button icon="right">下一页</m-button>
-            <m-button icon="setting" iconPosition="right">设置</m-button>
+            <m-row :gutter="20">
+                <m-col span :phone="{span:24}" :ipad="{span:8}" :narrow-pc="{span:4}" :pc="{span:2}" :wide-pc="{span:1}">
+                    <div class="grid-content bg-purple"></div>
+                </m-col>
+                <m-col :span="22" :phone="{span:24}" :ipad="{span:16}" :narrow-pc="{span:20}" :pc="{span:22}" :wide-pc="{span:23}">
+                    <div class="grid-content bg-purple"></div>
+                </m-col>
+            </m-row>
             <pre><code>{{code4}}</code></pre>
         </div>
-        <h3 class="section">按钮组</h3>
-        <p>以按钮组的方式出现，常用于多项类似操作。</p>
-        <div class="demo-wrapper">
-            <m-button-group>
-                <m-button icon="left">上一页</m-button>
-                <m-button icon="download">下载</m-button>
-                <m-button icon="right">下一页</m-button>
-            </m-button-group>
-            <pre><code>{{code5}}</code></pre>
-        </div>
-        <h3 class="section">Attributes</h3>
+        <h3 class="section">Row Attributes</h3>
         <table class="table">
             <thead>
             <tr>
@@ -53,33 +88,75 @@
             </thead>
             <tbody>
             <tr>
-                <td>icon</td>
-                <td>图标</td>
-                <td>string</td>
-                <td>setting / download / left / right</td>
+                <td>gutter</td>
+                <td>栅格间隔</td>
+                <td>number</td>
                 <td>—</td>
+                <td>0</td>
             </tr>
+            </tbody>
+        </table>
+        <h3 class="section">Col Attributes</h3>
+        <table class="table">
+            <thead>
             <tr>
-                <td>iconPosition</td>
-                <td>图标位置</td>
-                <td>string</td>
-                <td>left / right</td>
-                <td>left</td>
+                <th>参数</th>
+                <th>说明</th>
+                <th>类型</th>
+                <th>可选值</th>
+                <th>默认值</th>
             </tr>
+            </thead>
+            <tbody>
             <tr>
-                <td>loading</td>
-                <td>是否显示加载状态</td>
-                <td>boolean</td>
-                <td>true / false</td>
-                <td>false</td>
-            </tr>
-            <tr>
-                <td>disabled</td>
-                <td>是否禁用</td>
-                <td>boolean</td>
+                <td>span</td>
+                <td>栅格占据的列数</td>
+                <td>number</td>
                 <td>—</td>
-                <td>false</td>
+                <td>24</td>
             </tr>
+            <tr>
+                <td>offset</td>
+                <td>栅格左侧的间隔格数</td>
+                <td>number</td>
+                <td>—</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>phone</td>
+                <td><768px响应式栅格数或者栅格属性对象</td>
+                <td>number/object (例如： {span: 4, offset: 4})</td>
+                <td>—</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>ipad</td>
+                <td>≥768px响应式栅格数或者栅格属性对象</td>
+                <td>number/object (例如： {span: 4, offset: 4})</td>
+                <td>—</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>narrow-pc</td>
+                <td>≥992px 响应式栅格数或者栅格属性对象</td>
+                <td>number/object (例如： {span: 4, offset: 4})</td>
+                <td>—</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>pc</td>
+                <td>≥1200px 响应式栅格数或者栅格属性对象</td>
+                <td>number/object (例如： {span: 4, offset: 4})</td>
+                <td>—</td>
+                <td>-</td>
+            </tr><tr>
+                <td>wide-pc</td>
+                <td>≥1920px 响应式栅格数或者栅格属性对象</td>
+                <td>number/object (例如： {span: 4, offset: 4})</td>
+                <td>—</td>
+                <td>-</td>
+            </tr>
+
             </tbody>
         </table>
     </div>
@@ -87,35 +164,87 @@
 <script>
     import Button from '../../../src/button/button'
     import ButtonGroup from "../../../src/button/button-group";
+    import Row from '../../../src/grid/row'
+    import Col from "../../../src/grid/col";
     export default {
         components:{
             'm-button':Button,
-            'm-button-group':ButtonGroup
+            'm-button-group':ButtonGroup,
+            'm-row':Row,
+            'm-col':Col,
         },
         data(){
             return{
-                code1:`<m-button>默认按钮</m-button>`,
-                code2: `<m-button disabled>设置</m-button>`.trim(),
-                code3:`<m-button :loading="true">设置</m-button>`,
+                code1:
+                                `<m-row>
+                <m-col span="24"><div class="grid-content bg-purple-dark"></div></m-col>
+                </m-row>
+                <m-row>
+                  <m-col span="12"><div class="grid-content bg-purple"></div></m-col>
+                  <m-col span="12"><div class="grid-content bg-purple-light"></div></m-col>
+                </m-row>
+                <m-row>
+                  <m-col span="8"><div class="grid-content bg-purple"></div></m-col>
+                  <m-col span="8"><div class="grid-content bg-purple-light"></div></m-col>
+                  <m-col span="8"><div class="grid-content bg-purple"></div></m-col>
+                </m-row>
+                <m-row>
+                  <m-col span="6"><div class="grid-content bg-purple"></div></m-col>
+                  <m-col span="6"><div class="grid-content bg-purple-light"></div></m-col>
+                  <m-col span="6"><div class="grid-content bg-purple"></div></m-col>
+                  <m-col span="6"><div class="grid-content bg-purple-light"></div></m-col>
+                </m-row>
+                <m-row>
+                  <m-col span="4"><div class="grid-content bg-purple"></div></m-col>
+                  <m-col span="4"><div class="grid-content bg-purple-light"></div></m-col>
+                  <m-col span="4"><div class="grid-content bg-purple"></div></m-col>
+                  <m-col span="4"><div class="grid-content bg-purple-light"></div></m-col>
+                  <m-col span="4"><div class="grid-content bg-purple"></div></m-col>
+                  <m-col span="4"><div class="grid-content bg-purple-light"></div></m-col>
+                </m-row>
+ `.replace(/^ {8}/gm, "").trim(),
+                code2: ` <m-row :gutter="20">
+                <m-col span="5"><div class="grid-content bg-purple"></div></m-col>
+                <m-col span="5"><div class="grid-content bg-purple"></div></m-col>
+                <m-col span="5"><div class="grid-content bg-purple"></div></m-col>
+                <m-col span="5"><div class="grid-content bg-purple"></div></m-col>
+            </m-row>
+ `.replace(/^ {8}/gm, "").trim(),
+                code3:`
+                <m-row :gutter="20">
+                <m-col span="16"><div class="grid-content bg-purple"></div></m-col>
+                <m-col span="8"><div class="grid-content bg-purple"></div></m-col>
+            </m-row>
+            <m-row :gutter="20">
+                <m-col span="8"><div class="grid-content bg-purple"></div></m-col>
+                <m-col span="8"><div class="grid-content bg-purple"></div></m-col>
+                <m-col span="4"><div class="grid-content bg-purple"></div></m-col>
+                <m-col span="4"><div class="grid-content bg-purple"></div></m-col>
+            </m-row>
+            <m-row :gutter="20">
+                <m-col span="4"><div class="grid-content bg-purple"></div></m-col>
+                <m-col span="16"><div class="grid-content bg-purple"></div></m-col>
+                <m-col span="4"><div class="grid-content bg-purple"></div></m-col>
+            </m-row>
+                `,
                 code4:`
-<m-button icon="settings">设置</m-button>
-<m-button icon="download">下载</m-button>
-<m-button icon="left">上一页</m-button>
-<m-button icon="right">下一页</m-button>
-<m-button icon="settings" iconPosition="right">设置</m-button>
+            <m-row :gutter="20">
+    <m-col span="2" :phone="{span:24}" :ipad="{span:8}" :narrow-pc="{span:4}" :pc="{span:2}" :wide-pc="{span:1}">
+        <div class="grid-content bg-purple"></div>
+    </m-col>
+    <m-col span="22" :phone="{span:24}" :ipad="{span:16}" :narrow-pc="{span:20}" :pc="{span:22}" :wide-pc="{span:23}">
+        <div class="grid-content bg-purple"></div>
+    </m-col>
+</m-row>
                 `.trim(),
-                code5:`
-<m-button-group>
-    <m-button icon="left">上一页</m-button>
-    <m-button icon="download">下载</m-button>
-    <m-button icon="right">下一页</m-button>
-</m-button-group>
-                `.trim()
             }
         }
     }
 </script>
 <style lang="scss" scoped>
+    *{
+        box-sizing: border-box;
+    }
     .m-button {
         margin-right: 10px;
         margin-bottom: 10px;
@@ -137,5 +266,31 @@
             min-width: 50px;
             text-align: left
         }
+    }
+    .m-row {
+        margin-bottom: 20px;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    .el-col {
+        border-radius: 4px;
+    }
+    .bg-purple-dark {
+        background: #99a9bf;
+    }
+    .bg-purple {
+        background: #d3dce6;
+    }
+    .bg-purple-light {
+        background: #e5e9f2;
+    }
+    .grid-content {
+        border-radius: 4px;
+        min-height: 36px;
+    }
+    .row-bg {
+        padding: 10px 0;
+        background-color: #f9fafc;
     }
 </style>

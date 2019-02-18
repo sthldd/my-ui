@@ -21,11 +21,14 @@ module.exports = {
                 title: '组件',
                 children: [
                     '/components/layout',
+                    '/components/grid',
                     '/components/button',
                     '/components/input',
                     '/components/tabs',
-                    '/components/grid',
                     '/components/toast',
+                    '/components/uploader',
+                    '/components/pager',
+                    '/components/popover',
                 ]
             }
 
