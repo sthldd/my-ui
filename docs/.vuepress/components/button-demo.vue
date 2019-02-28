@@ -116,6 +116,7 @@
     }
 </script>
 <style lang="scss" scoped>
+    *{box-sizing: border-box}
     .m-button {
         margin-right: 10px;
         margin-bottom: 10px;

@@ -103,6 +103,7 @@
     };
 </script>
 <style lang="scss" scoped>
+  *{box-sizing: border-box}
   .code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
     color: #476582;

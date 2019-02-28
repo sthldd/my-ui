@@ -24,11 +24,16 @@ module.exports = {
                     '/components/grid',
                     '/components/button',
                     '/components/input',
-                    '/components/tabs',
-                    '/components/toast',
+                    '/components/cascader',
                     '/components/uploader',
                     '/components/pager',
+                    '/components/nav',
+                    '/components/tabs',
+                    '/components/toast',
                     '/components/popover',
+                    '/components/slides',
+                    '/components/collapse',
+                    '/components/scroll',
                 ]
             }
 

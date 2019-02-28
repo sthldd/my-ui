@@ -1,19 +1,10 @@
 <template>
-  <div style="margin:200px;">
-    <m-popover position="left" trigger="hover">
-      <template slot="content">
-        <div>左方出现的提示信息</div>
-      </template>
-      <template>
-        <m-button>左方</m-button>
-      </template>
-    </m-popover>
+  <div style="margin:100px;">
+
   </div>
 </template>
 <script>
 import db from "../tests/fixture/db";
-import MPopover from './popover';
-import MButton from './button/button';
 //db里面的parent_id 0 是第一级别省 省的id对应的是市的parent_id
 // function ajax(parentId = 0){
 //   return new Promise((resolve,reject)=>{
@@ -34,18 +25,13 @@ import MButton from './button/button';
 export default {
   name:'demo',
   components:{
-    'm-popover':MPopover,
-    'm-button': MButton,
+      MCascader
   },
   data(){
     return{
-
     }
   },
-  destroyed(){
-  },
-  mounted(){
-
+  created(){
   },
   methods:{
   }
@@ -62,6 +48,10 @@ export default {
   }
   body{
     font-size: 14px;
+  }
+  .m-col-content{
+    border:1px solid red;
+    background: gray;
   }
 </style>
 

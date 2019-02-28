@@ -94,6 +94,7 @@
 </script>
 
 <style scoped lang="scss">
+  *{box-sizing: border-box}
   .section {
     margin-top: 50px;
   }

@@ -130,7 +130,7 @@
     transition: transform 0.01s ease;
     &-wrapper{
       margin:0 auto;
-      border:1px solid green;
+      border:1px solid #D0D0D0;
       overflow: hidden;
       position: relative;
     }

@@ -63,6 +63,7 @@
           return children.filter(item =>
                   item.id === id)[0]
         }
+
         let complex =  (children,id)=>{
           let noChildren = []
           let hasChildren = []
@@ -74,7 +75,6 @@
             }
           })
           let found = simplest(noChildren,id) //看item有没有children
-
           if(found){ //如果没有children就返回
             return found
           }else{ //有children就用复杂的complex来找
@@ -97,6 +97,7 @@
           this.loadingItem = {}
           let copy = JSON.parse(JSON.stringify(this.source))
           let toUpdate = complex(copy,lastItem.id) //copy是所有的数据
+            console.log(toUpdate)
           toUpdate.children=result
           this.$emit('update:source',copy)
         }
@@ -120,10 +121,8 @@
 @import "../var";
   .cascader{
     position: relative;
-    border:1px solid red;
     display: inline-block;
     .trigger{
-      border:1px solid #D9D9D9;
       height:$input-height;
       display: inline-flex;
       align-items: center;
